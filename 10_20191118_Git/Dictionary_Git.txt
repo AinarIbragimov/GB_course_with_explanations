@@ -1,0 +1,69 @@
+ls - список файлов текущего каталога
+ls -la - список файлов
+pwd - точный путь до текущей папки
+cd - перемещение между каталогами (cd /d/project_data_sience)
+touch - содание файла (touch hello.txt)
+mkdir - создание каталога/папки (mkdir test)
+echo - вывести фразу в консоль (echo 'Hello, Git!')
+echo str > файл - вывести фразу в файл (echo 'Hello, Git!' > hello.txt)
+echo str >> файл - дозаписать фразу в конец файла (echo 'Hello, world!' >> hello.txt)
+cat - прочитать содержимое файла (cat hello.txt)
+unlink - удалить файл (unlink hello.txt)
+git --version - проверка версии Git
+-----> Настройка Git для регистрации снимков и коммитов
+git config --global user.name 'Irina Yakupova'
+git config --global user.email yakiris@yandex.ru
+git config --list - список настроек
+git config --list --show-origin - месторасположение конфигурационного файла
+git init - пометить текущую папку как git-проект
+git add . - индексируются все новые файлы 
+git add hello.txt - индексируется избранный файл
+git commit -m 'Первый коммит' - создается коммит (снимок состояния) файла
+    -m - комментарий к коммиту
+git commit -am "Изменения в README файле" -создает коммит без git add .
+git config --global core.editor nano - если при создании коммита не указан параметр -m, подключаем редактор nano 
+    <Ctrl>+<O>- запись файла в редакторе nano
+    <Ctrl>+<X> - выход из редактора nano
+git clone - клонирование проекта (git clone https://github.com/web-standards-ru/dictionary.git)
+gitk - запуск графического клиента git для просмотра истории коммитов
+git gui - запуст графического клиента git для создания коммитов (Stage Changed - git add)
+git status - проверка статуса проекта
+git status -s -более компактный вывод статус проекта 
+    ?? - неотслеживаемые файлы
+    A - отслеиваемые файлы
+    М - отредактированные файлы
+git diff - описание изменений отслеживаемых файлов
+git diff --cached - описание изменений файлов в индексе
+git restore <file> - вернуть состояние файла до последнего коммита 
+    (после изменения файла в редакторе комманда git status сама предлагает откат)
+git restore --staged <file>... - вернуть файл из индекса в отслеживаемые
+    (после сохранения файла в индекс (git add .) комманда git status сама предлагает откат)
+git log - история изменений файла в хронологическом порядке (переход дальше - пробел, выход из режима просмотра - q)
+    git log -2 - параметр минус ограничивает количество выводимых коммитов
+    git log -2 -p - параметр р вывод детальных изменений
+    git log -2 --stat - параметр stat выводит статистику
+    git log --pretty=oneline - сокращает вывод команды
+    git log --pretty=format:"%h - %an, %ar : %s" - создается собственный формат
+    git log --since=2019-12-03 - до какого момента в прошлом мы ищем коммиты
+    git log --until=2019-12-05 - дата, с которой начинается поиск
+    git log -SСлово -p - поиск по слову
+    git log --author="Irina Yakupova" - поиск по автору
+git blame <file> - вывод информации об изменении в файле
+.gitignor - в файле хранится список файлов ингорируемых файлов для коммита. Файл помещается в корень проекта.  
+    *.log - все файлы с расширением log
+    tmp/* - содержимое папки tmp
+ Для отслеживания пустой папки, необходимо создать пустой файл .keep
+ git branch - вывод списка веток проекта
+ git branch test - добавление ветки test 
+ git checkout test - переключение на ветку test 
+ git branch -m test text - переименование ветки test в text
+ git branch -D text - удаление ветки text (предварительно необходимо выйти из этой ветки)
+ git merge test - слияние веток test в master. Приэтом надо быть в ветке master
+git config --global alias.gg 'log --pretty=format:"%C(yellow)%h%Creset
+-%C(green)%d%Creset %s %C(bold blue)(%cn) %C(green)%cd%Creset" --graph
+--date=format:"%d.%m.%Y %H:%M"' - создание псевдонима gg для длинной команды
+git push origin master - отправляет изменения на сервер github в ветку origin из локальной ветки master
+git pull origin master - скачивает изменения с сервера github из ветки origin в локальную ветку master
+git remote add origin - регистрирует удаленный сервер в файле .git/config
+git remote - список доступных удаленных (серверных) репозиториев
+git fetch - получение всех изменений с удаленного сервера gdfg
